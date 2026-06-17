@@ -30,7 +30,7 @@ if len(ingredient_list) == 4:
 import requests  
 smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
 # st.text(smoothiefroot_response)
-st_df = st.data.frame(data=smoothiefroot_response.json(),use_container_width=true)
+st_df = st.data.frame(data=smoothiefroot_response.json(),use_container_width=True)
 
 if ingredient_list:    
     ingredients_string = ''
