@@ -1,6 +1,7 @@
 # Import python packages
 import streamlit as st
 from snowflake.snowpark.functions import col
+import requests  
 
 st.title(":cup_with_straw: Customize Your Smoothie! ")
 st.write(
@@ -27,16 +28,13 @@ ingredient_list = st.multiselect(
 if len(ingredient_list) == 4:
     st.warning('Careful! You have chosen 4 ingredients. You can only add 1 more! 🛒')
 
-import requests  
-smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
-# st.text(smoothiefroot_response)
-st_df = st.dataframe(data=smoothiefroot_response.json(),use_container_width=True)
-
 if ingredient_list:    
     ingredients_string = ''
 
     for fruit_chosen in ingredient_list:
         ingredients_string += fruit_chosen + ' '
+        smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+        st_df = st.dataframe(data=smoothiefroot_response.json(),use_container_width=True)
 
     # st.write(ingredients_string)
 
